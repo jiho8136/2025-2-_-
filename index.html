@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>나만의 힐링송 — 레트로 레코드</title>
+
+  <!-- 구글폰트 (선택) - 레트로 감성용 폰트 불러오기 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- 스타일시트 연결 (같은 폴더에 style.css 있어야 함) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 페이지 래퍼 -->
+  <div class="page">
+
+    <!-- 헤더: 로고 + 제목 -->
+    <header class="site-header">
+      <div class="logo">
+        <!-- 레트로 로고 텍스트: 수정 가능 -->
+        <span class="logo-mark">◉</span>
+        <span class="logo-text">Retro Records</span>
+      </div>
+      <h1 class="site-title">나만의 힐링송 — 빈첸 스페셜</h1>
+      <p class="site-sub">레코드판의 회전 소리처럼 차분히 흐르는 두 곡을 소개합니다.</p>
+    </header>
+
+    <!-- 메인 컨텐츠: 좌우 레이아웃(왼쪽: 플레이어+정보, 오른쪽: 트랙 리스트) -->
+    <main class="container">
+
+      <!-- 좌측: 현재 재생 중(시각적으로) 섹션 -->
+      <section class="player-area">
+        <div class="record-wrap">
+          <!-- 앨범 커버(원형) -->
+          <div class="record">
+            <!-- 실제 앨범 커버 이미지: 파일명 변경 시 여기 수정 -->
+            <img src="회고록_빈첸.jpg" alt="빈첸 회고록 앨범 커버" class="album-cover" id="cover-main">
+            <!-- 레이블(중앙 동그라미) -->
+            <div class="label">VINXEN</div>
+          </div>
+
+          <!-- 플레이어 컨트롤 (데코만 가능, 실제 재생은 iframe 사용) -->
+          <div class="controls">
+            <button class="btn btn-small" id="prev" aria-label="이전 트랙">◀</button>
+            <button class="btn btn-play" id="play" aria-label="재생/일시정지">▶</button>
+            <button class="btn btn-small" id="next" aria-label="다음 트랙">▶▶</button>
+          </div>
+        </div>
+
+        <!-- 현재 트랙 정보 -->
+        <div class="now-info">
+          <h2 id="now-title">빈첸 — 회고록</h2>
+          <p id="now-desc">
+            <!-- 여기에 회고록에 대한 간단 설명을 작성하세요. (HTML 주석 제거 후 작성) -->
+            <!-- 예: 이 노래는 혼자 걷는 밤길에 들으면 위로가 되는 곡입니다. -->
+          </p>
+        </div>
+
+        <!-- 유튜브 임베드 (현재 선택된 트랙 재생) -->
+        <div class="video-wrap">
+          <!-- 회고록 (기본 표시). 유튜브 동영상이 지역/네트워크에 의해 차단되면 새 탭 링크 사용권장 -->
+          <iframe id="yt-iframe"
+            width="100%" height="360"
+            src="https://www.youtube.com/embed/NTH-wZe6etg"
+            title="빈첸 회고록"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <!-- 우측: 트랙 리스트 & 제출자 정보 -->
+      <aside class="side-area">
+
+        <!-- 트랙 리스트: 각 항목 클릭 시 메인 앨범/iframe 변경 -->
+        <div class="track-list">
+          <h3>트랙 목록</h3>
+
+          <!-- 트랙 항목(1) : 필요가 -->
+          <article class="track" data-title="빈첸 — 필요가" data-desc="마음이 무겁고 스스로를 위로해야 하는 순간에 들으면 깊은 공감과 정서를 채워주는 곡입니다." data-img="필요가_빈첸.jpg" data-video="https://www.youtube.com/embed/zTPI-mO4VaI">
+            <img src="필요가_빈첸.jpg" alt="필요가 썸네일" class="thumb">
+            <div class="track-meta">
+              <strong>필요가</strong>
+              <span class="artist">빈첸</span>
+            </div>
+            <button class="select-btn" aria-label="필요가 재생">PLAY</button>
+          </article>
+
+          <!-- 트랙 항목(2) : 회고록 -->
+          <article class="track active" data-title="빈첸 — 회고록" data-desc="스스로를 다잡아야 하는 순간에 들으면 감정의 몰입과 동기부여를 동시에 줄 수 있는 곡입니다. " data-img="회고록_빈첸.jpg" data-video="https://www.youtube.com/embed/NTH-wZe6etg">
+            <img src="회고록_빈첸.jpg" alt="회고록 썸네일" class="thumb">
+            <div class="track-meta">
+              <strong>회고록</strong>
+              <span class="artist">빈첸</span>
+            </div>
+            <button class="select-btn" aria-label="회고록 재생">PLAY</button>
+          </article>
+        </div>
+
+        <!-- 제출자 정보(마지막 섹션): 과제 요구사항 반영 -->
+        <div class="author-box">
+          <h3>제출자 정보</h3>
+          <ul>
+            <li><strong>이름:</strong> 이지호 </li>
+            <li><strong>이메일:</strong> Jiho8136@hanyang.ac.kr</li>
+            <li><strong>학과/학번:</strong> 바이오신약융합학부 분자의약전공 2025077465 </li>
+          </ul>
+
+          <!-- 간단한 연락 폼(동작하지 않는 경우 주석 처리 가능)
+               과제 제출용이라면 실제 전송은 필요없으니 action을 비워두거나 mailto 사용 -->
+          <form class="contact-form" action="mailto:Jiho8136@hanyang.ac.kr" method="get" onsubmit="return false;">
+            <label for="msg">간단 메시지</label>
+            <input id="msg" name="msg" type="text" placeholder="한줄 메시지 (선택)">
+            <button type="button" class="btn btn-submit">저장(로컬)</button>
+          </form>
+        </div>
+
+      </aside>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="site-footer">
+      <p>© 2025 — 나만의 힐링송 | 레트로 테마</p>
+    </footer>
+  </div>
+
+  <!-- --------------------------------------------------
+       간단한 인터랙션 스크립트 (내장) - 파일에 직접 붙여넣기
+       * 이 스크립트는 HTML 파일 안에 넣어도 되고 별도 JS 파일로 분리해도 됩니다.
+       * 여기선 "순수 JS로 UI 변경(iframe src, 앨범 커버 교체, 텍스트 교체)"만 합니다.
+     -------------------------------------------------- -->
+  <script>
+    // 트랙 항목 클릭 시 메인 영역(제목, 설명, 앨범 이미지, iframe)을 바꿔줌
+    document.querySelectorAll('.track').forEach(track => {
+      track.addEventListener('click', () => {
+        // active 상태 토글
+        document.querySelectorAll('.track').forEach(t => t.classList.remove('active'));
+        track.classList.add('active');
+
+        // 메타 정보 가져오기
+        const title = track.dataset.title;
+        const desc = track.dataset.desc;
+        const img = track.dataset.img;
+        const video = track.dataset.video;
+
+        // 제목/설명/커버/iframe 바꾸기
+        document.getElementById('now-title').textContent = title;
+        // 설명은 HTML 주석 자리라 바로 교체하면 주석 사라짐 — 필요시 직접 작성하세요
+        document.getElementById('now-desc').innerHTML = desc;
+
+        // 앨범 커버 바꾸기 (이미지 파일이 프로젝트 폴더에 있어야 함)
+        const cover = document.getElementById('cover-main');
+        if (img) cover.src = img;
+
+        // iframe 교체 (autoplay 보장을 위한 파라미터는 네트워크/브라우저 정책에 따라 제한될 수 있음)
+        const iframe = document.getElementById('yt-iframe');
+        if (video) iframe.src = video;
+      });
+    });
+
+    // 플레이 버튼(데모용) - 실제 재생/일시정지 제어는 iframe API 필요
+    document.getElementById('play').addEventListener('click', () => {
+      // 시각적 피드백: record에 회전 애니메이션 토글
+      document.querySelector('.record').classList.toggle('spinning');
+    });
+
+    // prev/next 버튼은 트랙 리스트 포지션 이동 (간단 구현)
+    const tracks = Array.from(document.querySelectorAll('.track'));
+    document.getElementById('prev').addEventListener('click', () => {
+      const currentIndex = tracks.findIndex(t => t.classList.contains('active'));
+      const prevIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+      tracks[prevIndex].click();
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      const currentIndex = tracks.findIndex(t => t.classList.contains('active'));
+      const nextIndex = (currentIndex + 1) % tracks.length;
+      tracks[nextIndex].click();
+    });
+
+    // "저장(로컬)" 버튼: 현재 선택 트랙 메모를 로컬스토리지에 저장 (간단 기능)
+    document.querySelector('.btn-submit').addEventListener('click', () => {
+      const msg = document.getElementById('msg').value || '';
+      const now = document.getElementById('now-title').textContent;
+      localStorage.setItem('lastNote', JSON.stringify({track: now, note: msg, at: Date.now()}));
+      alert('로컬에 저장되었습니다 (브라우저 localStorage).');
+    });
+
+  </script>
+</body>
+</html>
