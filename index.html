@@ -132,65 +132,11 @@
        * 이 스크립트는 HTML 파일 안에 넣어도 되고 별도 JS 파일로 분리해도 됩니다.
        * 여기선 "순수 JS로 UI 변경(iframe src, 앨범 커버 교체, 텍스트 교체)"만 합니다.
      -------------------------------------------------- -->
-  <script>
-    // 트랙 항목 클릭 시 메인 영역(제목, 설명, 앨범 이미지, iframe)을 바꿔줌
-    document.querySelectorAll('.track').forEach(track => {
-      track.addEventListener('click', () => {
-        // active 상태 토글
-        document.querySelectorAll('.track').forEach(t => t.classList.remove('active'));
-        track.classList.add('active');
+  <script src="script.js"></script>
 
-        // 메타 정보 가져오기
-        const title = track.dataset.title;
-        const desc = track.dataset.desc;
-        const img = track.dataset.img;
-        const video = track.dataset.video;
-
-        // 제목/설명/커버/iframe 바꾸기
-        document.getElementById('now-title').textContent = title;
-        // 설명은 HTML 주석 자리라 바로 교체하면 주석 사라짐 — 필요시 직접 작성하세요
-        document.getElementById('now-desc').innerHTML = desc;
-
-        // 앨범 커버 바꾸기 (이미지 파일이 프로젝트 폴더에 있어야 함)
-        const cover = document.getElementById('cover-main');
-        if (img) cover.src = img;
-
-        // iframe 교체 (autoplay 보장을 위한 파라미터는 네트워크/브라우저 정책에 따라 제한될 수 있음)
-        const iframe = document.getElementById('yt-iframe');
-        if (video) iframe.src = video;
-      });
-    });
-
-    // 플레이 버튼(데모용) - 실제 재생/일시정지 제어는 iframe API 필요
-    document.getElementById('play').addEventListener('click', () => {
-      // 시각적 피드백: record에 회전 애니메이션 토글
-      document.querySelector('.record').classList.toggle('spinning');
-    });
-
-    // prev/next 버튼은 트랙 리스트 포지션 이동 (간단 구현)
-    const tracks = Array.from(document.querySelectorAll('.track'));
-    document.getElementById('prev').addEventListener('click', () => {
-      const currentIndex = tracks.findIndex(t => t.classList.contains('active'));
-      const prevIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-      tracks[prevIndex].click();
-    });
-    document.getElementById('next').addEventListener('click', () => {
-      const currentIndex = tracks.findIndex(t => t.classList.contains('active'));
-      const nextIndex = (currentIndex + 1) % tracks.length;
-      tracks[nextIndex].click();
-    });
-
-    // "저장(로컬)" 버튼: 현재 선택 트랙 메모를 로컬스토리지에 저장 (간단 기능)
-    document.querySelector('.btn-submit').addEventListener('click', () => {
-      const msg = document.getElementById('msg').value || '';
-      const now = document.getElementById('now-title').textContent;
-      localStorage.setItem('lastNote', JSON.stringify({track: now, note: msg, at: Date.now()}));
-      alert('로컬에 저장되었습니다 (브라우저 localStorage).');
-    });
-
-  </script>
 </body>
 
 </html>
 <!--이지호 - 웹페이지 제작 및 코드 작성, 표영남 및 박진섭 - 자료 조사-->
+
 
